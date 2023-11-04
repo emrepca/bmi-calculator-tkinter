@@ -25,10 +25,10 @@ height_entry.pack()
 #ValueError
 
 def button_clicked():
-    try:
-        if weight_entry.get() == "" or height_entry.get() == "":
-            result.config(text="Enter both weight and height!")
-        else:
+    if weight_entry.get() == "" or height_entry.get() == "":
+        result.config(text="Enter both weight and height!")
+    else:
+        try:
             answer = float(weight_entry.get()) / (float(height_entry.get())/100 * float(height_entry.get())/100)
             if answer <= 18.5:
                 result.config(text = f"Your BMI is {answer:.2f}. You are underweight.")
@@ -42,8 +42,8 @@ def button_clicked():
                 result.config(text = f"Your BMI is {answer:.2f}. You are obese class 2.")
             elif answer > 39.9:
                 result.config(text = f"Your BMI is {answer:.2f}. You are obese class 3.")
-    except ValueError:
-        result.config(text="Enter a valid number!")
+        except ValueError:
+            result.config(text="Enter a valid number!")
 
 #button
 button = Button(text="Calculate",command=button_clicked)
